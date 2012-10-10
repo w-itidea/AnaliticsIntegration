@@ -53,7 +53,7 @@ class DataFeedExample
 
 
     protected const String CLIENT_USERNAME = "jbrawo@gmail.com";
-    protected const String CLIENT_PASS = "maciek22";
+    protected const String CLIENT_PASS = "---tu---podaj-hasło--";
     protected const String TABLE_ID = "ga:36906246";
 
     //tutaj wszystko zapisujemy zaby potem wypluc ;) 
