@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="KeywordStats">
+  <DataContextMoniker Name="/KeywordStatsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="618d7848-c6d9-4964-bf69-eda33a75ee26" absoluteBounds="2.5, 1, 2, 1.9631982421875">
+      <DataClassMoniker Name="/KeywordStatsDataContext/GoogleKeywordAnalytic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b490c3ef-55ef-42ec-8512-6b21efc66c86" absoluteBounds="2.515, 1.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

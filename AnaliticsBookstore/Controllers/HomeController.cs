@@ -11,9 +11,9 @@ namespace MvcApplication1.Controllers
     {
         public ActionResult Index(String id)
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            //ViewBag.Message = "Welcome to ASP.NET MVC!";
 
-            ViewBag.res = MvcApplication1.Models.TransactionDetailsService.Start(id);
+            //ViewBag.res = MvcApplication1.Models.TransactionDetailsService.Start(id);
 
             return View();
         }
@@ -30,9 +30,9 @@ namespace MvcApplication1.Controllers
         /// <returns></returns>
         public ActionResult DoPoznaniaEvents(String id = "-1")
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            //ViewBag.Message = "Welcome to ASP.NET MVC!";
 
-            ViewBag.res = MvcApplication1.Models.DoPoznaniaEventsDetailsService.Start(id);
+            //ViewBag.res = MvcApplication1.Models.DoPoznaniaEventsDetailsService.Start(id);
 
             return View();
         }

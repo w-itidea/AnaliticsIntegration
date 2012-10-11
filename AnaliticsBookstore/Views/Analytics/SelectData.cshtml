@@ -1,0 +1,60 @@
+﻿@model MvcApplication1.Models.GoogleKeywordFilter
+@{
+    ViewBag.Title = "SelectData";
+}
+
+@section AdditionalScripts
+{
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")">
+	</script>
+	<script src="@Url.Content("~/Scripts/jquery.ui.datepicker-pl.js")">
+	</script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#StartDate").datepicker();
+            $("#EndDate").datepicker();
+        });
+    </script>
+}
+
+<h2>SelectData</h2>
+@using (Html.BeginForm("GetData", "Analytics", FormMethod.Get))
+{
+<table>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.StartDate)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.StartDate)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.EndDate)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.EndDate)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.MinPageViews)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.MinPageViews)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.MaxBounceRate)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.MaxBounceRate)
+        </td>
+    </tr>
+</table>
+    <input type="submit" value="Submit" />
+}

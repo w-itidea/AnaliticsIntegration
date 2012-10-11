@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @if (ViewBag.IsCode != null)
+    {
+        <span>Got access code; </span>
+    }
+    @if (ViewBag.IsToken != null)
+    {
+        <span>Got access token</span>
+    }
+</p>
+<a href="@ViewBag.AuthUrl">Auth</a> 
+@if (ViewBag.IsCode != null && ViewBag.IsToken != null)
+{
+    <a href="@Url.Action("SelectData")">Get data</a>
+}

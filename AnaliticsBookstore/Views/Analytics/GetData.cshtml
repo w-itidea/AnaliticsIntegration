@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcApplication1.Models.GoogleKeywordAnalytic>
+@{
+    ViewBag.Title = "GetData";
+}
+
+<h2>GetData</h2>
+
+<table>
+    <tr>
+        <td>
+            Url
+        </td>
+        <td>
+            Keyword
+        </td>
+        <td>
+            Pageviews
+        </td>
+        <td>
+            BounceRate
+        </td>
+    </tr>
+    @foreach (var entry in Model)
+    {
+        <tr>
+            <td>
+                @entry.pageUri
+            </td>
+            <td>
+                @entry.googleKeyword
+            </td>
+            <td>
+                @entry.sumcount
+            </td>
+            <td>
+                @entry.bounceRate
+            </td>
+        </tr>
+    }
+</table>

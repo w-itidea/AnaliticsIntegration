@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TireFu" Class="KeywordStatsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=TireFu.com\SQLWEB,49226;Initial Catalog=TireFu;Persist Security Info=True;User ID=tirefu" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TireFuConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ItIdea_SEO_MVGooglKeywordAnalytics" Member="GoogleKeywordAnalytics">
+    <Type Name="GoogleKeywordAnalytic">
+      <Column Name="pageUri" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="googleKeyword" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="sumcount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bounceRate" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="lastUpdate" Type="System.Data.Linq.Binary" DbType="rowversion NOT NULL" CanBeNull="false" IsVersion="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="WhenChanged" />
+    </Type>
+  </Table>
+</Database>
