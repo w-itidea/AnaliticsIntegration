@@ -26,22 +26,7 @@ namespace MvcApplication1.Controllers
 
         public ActionResult GetData(GoogleKeywordFilter filter)
         {
-            OAuth2Parameters parameters = new OAuth2Parameters()
-            {
-                ClientId = "788104354832-4f8hbomo43ga2mm92htpcj3i35mni3al.apps.googleusercontent.com",
-                ClientSecret = "9fhl9Xa2dM9UbbsAum5ROb9_",
-                RedirectUri = "http://localhost:52690/Analytics/Auth",
-                Scope = "https://www.googleapis.com/auth/analytics.readonly"
-            };
-            if (this.HttpContext.Session["code"] != null)
-            {
-                parameters.AccessCode = this.HttpContext.Session["code"].ToString();
-            }
-            if (this.HttpContext.Session["token"] != null)
-            {
-                parameters.AccessToken = this.HttpContext.Session["token"].ToString();
-            }
-
+            OAuth2Parameters parameters = new ApiAuth(this.HttpContext).Parameters;
             GOAuth2RequestFactory requestFactory = new GOAuth2RequestFactory("apps", "testGData", parameters);
             AnalyticsService service = new AnalyticsService("testGData");
             service.RequestFactory = requestFactory;
@@ -58,10 +43,7 @@ namespace MvcApplication1.Controllers
             DataFeed dataFeed = service.Query(query);
             List<GoogleKeywordAnalytic> result = new List<GoogleKeywordAnalytic>();
             //Clear table
-            var gKeyowrds = db.GoogleKeywordAnalytics;
-            db.GoogleKeywordAnalytics.DeleteAllOnSubmit(gKeyowrds);
-            db.SubmitChanges();
-            
+            db.ExecuteCommand("DELETE FROM ItIdea_SEO_MVGooglKeywordAnalytics");
             foreach (DataEntry entry in dataFeed.Entries)
             {
                 result.Add(new GoogleKeywordAnalytic(entry));
@@ -73,14 +55,7 @@ namespace MvcApplication1.Controllers
 
         public ActionResult Index()
         {
-            OAuth2Parameters parameters = new OAuth2Parameters()
-            {
-                ClientId = "788104354832-4f8hbomo43ga2mm92htpcj3i35mni3al.apps.googleusercontent.com",
-                ClientSecret = "9fhl9Xa2dM9UbbsAum5ROb9_",
-                RedirectUri = "http://localhost:52690/Analytics/Auth",
-                Scope = "https://www.googleapis.com/auth/analytics.readonly"
-            };
-            string url = OAuthUtil.CreateOAuth2AuthorizationUrl(parameters);
+            string url = OAuthUtil.CreateOAuth2AuthorizationUrl(new ApiAuth(this.HttpContext).Parameters);
             ViewBag.AuthUrl = url;
             if (this.HttpContext.Session["code"] != null)
             {
@@ -96,26 +71,8 @@ namespace MvcApplication1.Controllers
 
         public ActionResult Auth()
         {
-            // build the base parameters
-            OAuth2Parameters parameters = new OAuth2Parameters()
-            {
-                ClientId = "788104354832-4f8hbomo43ga2mm92htpcj3i35mni3al.apps.googleusercontent.com",
-                ClientSecret = "9fhl9Xa2dM9UbbsAum5ROb9_",
-                RedirectUri = "http://localhost:52690/Analytics/Auth",
-                Scope = "https://www.googleapis.com/auth/analytics.readonly"
-            };
-            if (Request.QueryString["code"] != null)
-            {
-                this.HttpContext.Session["code"] = Request.QueryString["code"];
-                parameters.AccessCode = Request.QueryString["code"];
-            }
-
-            if (this.HttpContext.Session["code"] != null)// && this.HttpContext.Session["token"] == null)
-            {
-                OAuthUtil.GetAccessToken(parameters);
-                this.HttpContext.Session["token"] = parameters.AccessToken;
-            }
-
+            ApiAuth apiAuth = new ApiAuth(this.HttpContext);
+            apiAuth.SetTokenCode(Request.QueryString["code"]);
             return RedirectToAction("Index");
         }
 

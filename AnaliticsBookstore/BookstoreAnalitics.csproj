@@ -77,6 +77,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ApiAuth.cs" />
     <Compile Include="Models\DoPoznaniaEventsDetailsService.cs" />
     <Compile Include="Models\GoogleKeywordFilter.cs" />
     <Compile Include="Models\KeywordStats.cs">

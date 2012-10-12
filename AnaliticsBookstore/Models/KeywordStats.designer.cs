@@ -88,7 +88,7 @@ namespace MvcApplication1.Models
 		
 		private float _bounceRate;
 		
-		private System.Data.Linq.Binary _lastUpdate;
+		private System.DateTime _lastUpdate;
 		
 		private int _id;
 		
@@ -104,7 +104,7 @@ namespace MvcApplication1.Models
     partial void OnsumcountChanged();
     partial void OnbounceRateChanging(float value);
     partial void OnbounceRateChanged();
-    partial void OnlastUpdateChanging(System.Data.Linq.Binary value);
+    partial void OnlastUpdateChanging(System.DateTime value);
     partial void OnlastUpdateChanged();
     partial void OnidChanging(int value);
     partial void OnidChanged();
@@ -195,8 +195,8 @@ namespace MvcApplication1.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastUpdate", AutoSync=AutoSync.Always, DbType="rowversion NOT NULL", CanBeNull=false, IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary lastUpdate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastUpdate", AutoSync=AutoSync.Always, DbType="Datetime NOT NULL", IsDbGenerated=true, IsVersion=true, UpdateCheck=UpdateCheck.Never)]
+		public System.DateTime lastUpdate
 		{
 			get
 			{

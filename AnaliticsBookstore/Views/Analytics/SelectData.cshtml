@@ -28,7 +28,8 @@
             @Html.LabelFor(model => model.StartDate)
         </td>
         <td>
-            @Html.EditorFor(model => model.StartDate)
+            @*@Html.EditorFor(model => model.StartDate)*@
+            @Html.TextBox("StartDate", Model.StartDate.ToShortDateString())
         </td>
     </tr>
     <tr>
@@ -36,7 +37,8 @@
             @Html.LabelFor(model => model.EndDate)
         </td>
         <td>
-            @Html.EditorFor(model => model.EndDate)
+            @*@Html.EditorFor(model => model.EndDate)*@
+            @Html.TextBox("EndDate", Model.StartDate.ToShortDateString())
         </td>
     </tr>
     <tr>
