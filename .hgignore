@@ -130,3 +130,10 @@ ConsoleApplication1/obj/x86/Debug/TempPE/DataClasses1.designer.cs.dll
 ConsoleApplication1/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 ConsoleApplication1/bin/Debug/ConsoleApplication1.vshost.exe.manifest
 AnaliticsBookstore/BookstoreAnalitics.suo.orig
+AnaliticsBookstore/BookstoreAnalitics.suo
+AnaliticsBookstore/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+AnaliticsBookstore/obj/Debug/TempPE/Models.KeywordStats.designer.cs.dll
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/bin/System.Web.Mvc.xml
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/SelectData.cshtml
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/Index.cshtml
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/GetData.cshtml

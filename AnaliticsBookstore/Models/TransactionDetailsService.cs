@@ -52,9 +52,13 @@ class DataFeedExample
 {
 
 
-    protected const String CLIENT_USERNAME = "jbrawo@gmail.com";
-    protected const String CLIENT_PASS = "---tu---podaj-hasło--";
-    protected const String TABLE_ID = "ga:36906246";
+    protected const String CLIENT_USERNAME = "gapiitidea@gmail.com";
+    protected const String CLIENT_PASS = "44$koscielna";
+    
+    protected const String TABLE_ID_TPB = "ga:36906246"; // Polishbookstore
+    protected const String TABLE_ID_PKI_DE = "ga:54730794"; // Polishbookstore
+    protected const String TABLE_ID_PKI_EU = "ga:47755504"; // Polishbookstore
+   // protected const String TABLE_ID = TABLE_ID_TPB + "," + TABLE_ID_PKI_DE + "," + TABLE_ID_PKI_EU ; // Polishbookstore
 
     //tutaj wszystko zapisujemy zaby potem wypluc ;) 
     public StringBuilder Console = new StringBuilder("");
@@ -87,8 +91,21 @@ class DataFeedExample
         // GA Data Feed query uri.
         String baseUrl = "https://www.google.com/analytics/feeds/data";
 
+
+        //var _tableIDS
+
         DataQuery query = new DataQuery(baseUrl);
-        query.Ids = TABLE_ID;
+
+        var _tid = Int32.Parse(transactionId);
+        
+        ///ustawiamy odpowiedni analitics w zaleznosi od id zamowienia
+        if (_tid > 140000)
+            query.Ids = TABLE_ID_PKI_DE;
+        else if (_tid > 50000)
+            query.Ids = TABLE_ID_PKI_EU;
+        else
+            query.Ids = TABLE_ID_TPB;
+
         query.Dimensions = "ga:source,ga:medium,ga:landingPagePath,ga:keyword,ga:adDestinationUrl,ga:adGroup,ga:adMatchedQuery";//,ga:adSlotPosition,ga:adSlot,ga:adPlacementUrl,ga:adDisplayUrl,ga:adDestinationUrl";//max 7  -takie ogranicznie
         query.Metrics = "ga:visits,ga:bounces,ga:transactions";
         //query.Segment = "gaid::-11";

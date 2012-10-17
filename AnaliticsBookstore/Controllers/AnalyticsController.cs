@@ -10,7 +10,12 @@ using MvcApplication1.Models;
 
 namespace MvcApplication1.Controllers
 {
-    public class AnalyticsController : Controller
+    /// <summary>
+    /// Ten kontroler słuzy do pobierania listy słów kluczowych z analitics do bazy danych - wykonany przez Jacha
+    /// 
+    /// TODO opisac
+    /// </summary>
+    public class KeywordsController : Controller
     {
 
         private KeywordStatsDataContext db = new KeywordStatsDataContext();
@@ -23,7 +28,11 @@ namespace MvcApplication1.Controllers
             }
             return View(filter);
         }
-
+        /// <summary>
+        /// Opisać
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public ActionResult GetData(GoogleKeywordFilter filter)
         {
             OAuth2Parameters parameters = new ApiAuth(this.HttpContext).Parameters;

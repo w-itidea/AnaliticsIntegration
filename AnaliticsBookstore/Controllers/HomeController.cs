@@ -9,11 +9,11 @@ namespace MvcApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(String id)
+        public ActionResult Index(String id = "4782" )
         {
-            //ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Badanie uruchomiono dla id = " + id;
 
-            //ViewBag.res = MvcApplication1.Models.TransactionDetailsService.Start(id);
+            ViewBag.res = MvcApplication1.Models.TransactionDetailsService.Start(id);
 
             return View();
         }
