@@ -137,3 +137,5 @@ AnaliticsBookstore/obj/Debug/Package/PackageTmp/bin/System.Web.Mvc.xml
 AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/SelectData.cshtml
 AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/Index.cshtml
 AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/GetData.cshtml
+MvcApplication1.suo
+MvcApplication1.sln.docstates.suo
