@@ -139,3 +139,17 @@ AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/Index.cshtml
 AnaliticsBookstore/obj/Debug/Package/PackageTmp/Views/Analytics/GetData.cshtml
 MvcApplication1.suo
 MvcApplication1.sln.docstates.suo
+AnaliticsBookstore/bin/GoogleFeeds.pdb
+AnaliticsBookstore/bin/GoogleFeeds.dll
+AnaliticsBookstore/obj/Debug/ResolveAssemblyReference.cache
+AnaliticsBookstore/BookstoreAnalitics.sln.docstates.suo
+GoogleFeeds/bin/Debug/GoogleFeeds.dll
+GoogleFeeds/obj/Debug/TempPE/FeedsDataContext.designer.cs.dll
+GoogleFeeds/obj/Debug/GoogleFeeds.pdb
+GoogleFeeds/obj/Debug/GoogleFeeds.dll
+GoogleFeeds/obj/Debug/GoogleFeeds.csproj.FileListAbsolute.txt
+GoogleFeeds/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+GoogleFeeds/bin/Debug/GoogleFeeds.pdb
+GoogleFeeds/bin/Debug/GoogleFeeds.dll.config
+MVCMarketingAutomation.suo
+MVCMarketingAutomation.sln.docstates.suo

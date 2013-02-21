@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="azymut" Class="FeedsDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=208.100.13.26\SQLEXPRESS,49202;Initial Catalog=azymut;User ID=azymut" SettingsObjectName="GoogleFeeds.Properties.Settings" SettingsPropertyName="azymutConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EAN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ISBN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ISSN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="AzymutId" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="PlatonId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="dzial" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="autorzy" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="redakcja" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="tytul" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="podtytul" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="liczbatomo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="nrkolejnyt" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tytultomu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="jezykoryg" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="tytuloryg" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="tlumacze" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="jezyki" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="seriacykl" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="tematyka" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="wydawca" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="azymutKodWydawcy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="wydanie" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="rokwyd" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="objetosc" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="format" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="oprawa" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="oprawaUproszczona" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ciezar" Type="System.Decimal" DbType="Decimal(18,4)" CanBeNull="true" />
+      <Column Name="uwagi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="isbn_serii" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="opis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="opisSkrocony" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="miejscowosc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="wysokosc" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="typ_pub" Type="System.String" DbType="NChar(2)" CanBeNull="true" />
+      <Column Name="kompl1" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="kompl2" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Column Name="cenaDetBrutto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="cenaHurtNetto" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="AzymutPrzecena" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="pkwiu" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="vat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dostepnosc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dostepnoscTemp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="czasRealizacji" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ostatnioDostepny" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="ostatnioDostepnyTemp" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="zapowiedz" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="data_ukazania_sie" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="statusObrazka" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="statusObrazkaLastUpdate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="obrazekPlik" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ukryjProdukt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ukryjProduktTemp" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="InHowManyOrders" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InHowManyOrders30" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastUpdated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OrderBy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ITidea_GoogleFeeds" Method="ITidea_GoogleFeeds">
+    <ElementType Name="ITidea_GoogleFeedsResult">
+      <Column Name="productID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="author" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="tytuloryg" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="tlumacze" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="oldprice" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="shortdescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BookCover" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,4) NOT NULL" CanBeNull="false" />
+      <Column Name="ciezar" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="dzial" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="OutOffStock" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isbn" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="img_uri" Type="System.String" DbType="VarChar(39)" CanBeNull="true" />
+      <Column Name="img_uri_src" Type="System.String" DbType="VarChar(33) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

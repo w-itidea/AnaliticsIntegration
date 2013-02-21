@@ -20,6 +20,11 @@ namespace MvcApplication1.Controllers
 
         private KeywordStatsDataContext db = new KeywordStatsDataContext();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public ActionResult SelectData(GoogleKeywordFilter filter)
         {
             if (filter == null)
@@ -28,6 +33,8 @@ namespace MvcApplication1.Controllers
             }
             return View(filter);
         }
+        
+        
         /// <summary>
         /// Opisać
         /// </summary>

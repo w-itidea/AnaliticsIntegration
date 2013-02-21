@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
+    <Compile Include="Controllers\BookstoreFeedsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,6 +177,7 @@
     <Content Include="Views\Analytics\GetData.cshtml" />
     <Content Include="Views\Analytics\Index.cshtml" />
     <Content Include="Views\Analytics\SelectData.cshtml" />
+    <Content Include="Views\BookstoreFeeds\TPB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -184,6 +186,12 @@
     <None Include="Models\KeywordStats.dbml.layout">
       <DependentUpon>KeywordStats.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleFeeds\GoogleFeeds.csproj">
+      <Project>{8811952F-34E6-4D98-BE26-4752408E1E9E}</Project>
+      <Name>GoogleFeeds</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

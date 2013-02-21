@@ -9,8 +9,22 @@ namespace MvcApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(String id = "4782" )
+        
+        /// <summary>
+        /// Domyslna akcja służy do pobierania danych o tranzakcji z GoogleAnalitics.
+        /// TODO - upożadkować i przenieść do odpowiedniego kontrolera.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Index(String id = "brak_Id") //defaut id="4782"
         {
+            if (id == "brak_Id")
+            {
+                //nie podałes kontrolera - przenosimy na abiyt
+                this.RedirectToAction("About");
+            }
+
+            
             ViewBag.Message = "Badanie uruchomiono dla id = " + id;
 
             ViewBag.res = MvcApplication1.Models.TransactionDetailsService.Start(id);
