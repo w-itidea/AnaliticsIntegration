@@ -7,7 +7,13 @@ using Google.GData.Client;
 
 namespace MvcApplication1.Models
 {
-    // Summary: Oauth2 athentication helper
+    /// <summary>
+    /// 
+    /// Ta klasa służy do uzyskania połączenia z Google Analytics. Dane dostępowe (token oraz access code) zapisywane są w sesji.
+    /// 
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
 
     public class ApiAuth
     {
@@ -21,13 +27,22 @@ namespace MvcApplication1.Models
             this.context = context;
         }
 
+        /// <summary>
+        /// 
+        /// Zwraca parametry połączenia z GA.
+        /// UWAGA: dane dostępowe do API GA są aktualnie zharcodowane.
+        /// 
+        /// </summary>
+        /// <returns>OAuth2Parameters</returns>
+
         public static OAuth2Parameters GetParameters(HttpContextBase context)
         {
             OAuth2Parameters parameters = new OAuth2Parameters()
             {
-                ClientId = "788104354832-4f8hbomo43ga2mm92htpcj3i35mni3al.apps.googleusercontent.com",
-                ClientSecret = "9fhl9Xa2dM9UbbsAum5ROb9_",
-                RedirectUri = "http://localhost:52690/Analytics/Auth",
+                ClientId = "788104354832-4f8hbomo43ga2mm92htpcj3i35mni3al.apps.googleusercontent.com", // Dane API Google
+                ClientSecret = "9fhl9Xa2dM9UbbsAum5ROb9_", // Dane API Google
+                // Adres url naszej aplikacji musi być dodany do ustawień naszego Google API https://code.google.com/apis/console
+                RedirectUri = "http://localhost:52690/Analytics/Auth", // Adres na który przeikieruje google po udanej autoryzacji
                 Scope = "https://www.googleapis.com/auth/analytics.readonly"
             };
             if (context.Session["code"] != null)
@@ -41,6 +56,12 @@ namespace MvcApplication1.Models
             return parameters;
         }
 
+        /// <summary>
+        /// 
+        /// Zapisuje token i access code w sesji.
+        /// 
+        /// </summary>
+
         public void SetTokenCode(string code)
         {
             if (code != null)
@@ -49,10 +70,10 @@ namespace MvcApplication1.Models
                 Parameters.AccessCode = code;
             }
 
-            if (context.Session["code"] != null)// && this.HttpContext.Session["token"] == null)
+            if (context.Session["code"] != null)// && this.HttpContext.Session["token"] == null) // Jeśli posiadamy access code, to pobieramy toekn
             {
-                OAuthUtil.GetAccessToken(Parameters);
-                context.Session["token"] = Parameters.AccessToken;
+                OAuthUtil.GetAccessToken(Parameters); // Pobieranie tokenu
+                context.Session["token"] = Parameters.AccessToken; // Zapisanie go w sesji
             }
         }
     }

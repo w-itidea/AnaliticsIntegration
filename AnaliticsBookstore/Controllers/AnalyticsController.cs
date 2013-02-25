@@ -22,9 +22,11 @@ namespace MvcApplication1.Controllers
 
         /// <summary>
         /// 
+        /// Ekran wyboru ustawień zakresu danych
+        /// 
         /// </summary>
-        /// <param name="filter"></param>
-        /// <returns></returns>
+        /// <param name="filter">Ustawienia w postaci pomocniczego modelu GoogleKeywordFilter.</param>
+        
         public ActionResult SelectData(GoogleKeywordFilter filter)
         {
             if (filter == null)
@@ -36,42 +38,46 @@ namespace MvcApplication1.Controllers
         
         
         /// <summary>
-        /// Opisać
+        /// Ekran danych zwóronych prze GA. Tutaj pobierane są dane z GA.
         /// </summary>
-        /// <param name="filter"></param>
+        /// <param name="filter">Ustawienia w postaci pomocniczego modelu GoogleKeywordFilter.</param>
         /// <returns></returns>
         public ActionResult GetData(GoogleKeywordFilter filter)
         {
-            OAuth2Parameters parameters = new ApiAuth(this.HttpContext).Parameters;
-            GOAuth2RequestFactory requestFactory = new GOAuth2RequestFactory("apps", "testGData", parameters);
-            AnalyticsService service = new AnalyticsService("testGData");
-            service.RequestFactory = requestFactory;
+            OAuth2Parameters parameters = new ApiAuth(this.HttpContext).Parameters; // Pobieramy nasze aktualne dane dostępowe do GA
+            GOAuth2RequestFactory requestFactory = new GOAuth2RequestFactory("apps", "testGData", parameters); // Na ich podstawie tworzymy obiekt GOAuth2RequestFactory, który będzie potrzebny do wysyłania zapytań do GA.
+            AnalyticsService service = new AnalyticsService("testGData"); // Tworzymy obiekt który będzie się łączył z GA
+            service.RequestFactory = requestFactory; // Dajemy mu nasze dane dostępowe do GA.
 
-            const string dataFeedUrl = "https://www.google.com/analytics/feeds/data";
-            DataQuery query = new DataQuery(dataFeedUrl);
-            query.Ids = "ga:36743694";
-            query.Metrics = "ga:visits, ga:visitBounceRate";
-            query.Dimensions = "ga:hostname, ga:landingPagePath, ga:keyword";
-            query.Sort = "-ga:visits,ga:keyword";
+            const string dataFeedUrl = "https://www.google.com/analytics/feeds/data"; // Adres do wysyłania zapytań do google.
+            DataQuery query = new DataQuery(dataFeedUrl); // tworzymy zapytanie
+            query.Ids = "ga:36743694"; // podajemy id strony w GA (bardzo ważne)
+            query.Metrics = "ga:visits, ga:visitBounceRate"; // podajemy mierzone wartości
+            query.Dimensions = "ga:hostname, ga:landingPagePath, ga:keyword"; // oraz wymiary
+            query.Sort = "-ga:visits,ga:keyword"; // sposób sortowania
             query.Filters = "ga:medium==organic;ga:keyword!@not set;ga:keyword!@not provided;ga:landingPagePath!@not set;ga:visits>=" + filter.MinPageViews.ToString() + ";ga:visitBounceRate<=" + filter.MaxBounceRate.ToString();
-            query.GAStartDate = filter.StartDate.ToShortDateString();
-            query.GAEndDate = filter.EndDate.ToShortDateString();
-            DataFeed dataFeed = service.Query(query);
-            List<GoogleKeywordAnalytic> result = new List<GoogleKeywordAnalytic>();
+            // Filtry: znak ";" oznacza AND
+            query.GAStartDate = filter.StartDate.ToShortDateString(); // wskazujemy datę rozpoczęcia
+            query.GAEndDate = filter.EndDate.ToShortDateString(); // i zakończenia
+            DataFeed dataFeed = service.Query(query); // wysyłamy zapytanie do GA
+            List<GoogleKeywordAnalytic> result = new List<GoogleKeywordAnalytic>(); // tworzymy listę do przechowywania wyników
             //Clear table
-            db.ExecuteCommand("DELETE FROM ItIdea_SEO_MVGooglKeywordAnalytics");
+            db.ExecuteCommand("DELETE FROM ItIdea_SEO_MVGooglKeywordAnalytics"); // Czyścimy tablicę do której będą zapisane wyniki
             foreach (DataEntry entry in dataFeed.Entries)
             {
-                result.Add(new GoogleKeywordAnalytic(entry));
-                db.GoogleKeywordAnalytics.InsertOnSubmit(new GoogleKeywordAnalytic(entry));
+                result.Add(new GoogleKeywordAnalytic(entry)); // Dodajemy wynik do listy
+                db.GoogleKeywordAnalytics.InsertOnSubmit(new GoogleKeywordAnalytic(entry)); // Oraz do bazy danych
             }
-            db.SubmitChanges();
-            return View(result);
+            db.SubmitChanges(); // Wysyłamy zmiany do bazy danych
+            return View(result); // Wyświetlamy wyniki na odpowiednim ekranie
         }
 
+        /// <summary>
+        /// Ekran główny. Wyświetla informację czy mamy token oraz access code.
+        /// </summary>
         public ActionResult Index()
         {
-            string url = OAuthUtil.CreateOAuth2AuthorizationUrl(new ApiAuth(this.HttpContext).Parameters);
+            string url = OAuthUtil.CreateOAuth2AuthorizationUrl(new ApiAuth(this.HttpContext).Parameters); // Generowanie linku autoryzacyjnego (za pierwszym razem wymagane jest potwierdzenie dania dostępu do GA, przy kolejnych próbach dostęp dawany jest automatycznie)
             ViewBag.AuthUrl = url;
             if (this.HttpContext.Session["code"] != null)
             {
@@ -84,11 +90,13 @@ namespace MvcApplication1.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// Ekran zwrotny GA. Po udanej autoryzacji google przekierowywuje na tą stronę i podaje nam access code
+        /// </summary>
         public ActionResult Auth()
         {
             ApiAuth apiAuth = new ApiAuth(this.HttpContext);
-            apiAuth.SetTokenCode(Request.QueryString["code"]);
+            apiAuth.SetTokenCode(Request.QueryString["code"]); // Zapisujemy access code w sesji
             return RedirectToAction("Index");
         }
 
