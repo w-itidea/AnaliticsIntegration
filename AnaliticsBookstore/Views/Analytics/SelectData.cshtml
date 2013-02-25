@@ -18,11 +18,80 @@
         });
     </script>
 }
-
+@if (ViewBag.IsToken == null && ViewBag.IsCode == null)
+{
+    <div>
+        <span>You have no access data, please <a href="@Url.Action("Index")">authorize</a>.</span>
+    </div>
+}
 <h2>SelectData</h2>
 @using (Html.BeginForm("GetData", "Analytics", FormMethod.Get))
 {
 <table>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.GaId)
+        </td>
+        <td>
+            @{
+                List<SelectListItem> list = new List<SelectListItem>();
+                list.Add(new SelectListItem
+                {
+                    Text = "tirefu.com",
+                    Value = "36743694"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "dopoznania.pl",
+                    Value = "49809674"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "bavi.pl",
+                    Value = "65576965"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "octagon",
+                    Value = "56721514"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "salesberry",
+                    Value = "47742641"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "ThePolishBookstore with domain",
+                    Value = "43738233"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "ThePolishBookstore.com",
+                    Value = "36906246"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "Z ThePolishBookstore.com Poland only",
+                    Value = "43697763"
+                });
+                list.Add(new SelectListItem
+                {
+                    Text = "PolskaKsiegarniaInternetowa.eu",
+                    Value = "47755504"
+                });
+                @:@Html.DropDownListFor(model => model.GaId, list)
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.UrlLike)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.UrlLike)
+        </td>
+    </tr>
     <tr>
         <td>
             @Html.LabelFor(model => model.StartDate)
@@ -55,6 +124,14 @@
         </td>
         <td>
             @Html.EditorFor(model => model.MaxBounceRate)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Output)
+        </td>
+        <td>
+            @Html.DropDownListFor(model => model.Output, (List<SelectListItem>)ViewBag.AvailableOutput)
         </td>
     </tr>
 </table>

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using System.Text;
+using System.IO;
+using System.Web.UI;
 using Google.GData.Analytics;
 using Google.GData.Extensions;
 using Google.GData.Client;
@@ -33,7 +37,18 @@ namespace MvcApplication1.Controllers
             {
                 filter = new GoogleKeywordFilter();
             }
+
+            if (this.HttpContext.Session["code"] != null)
+            {
+                ViewBag.IsCode = true;
+            }
+            if (this.HttpContext.Session["token"] != null)
+            {
+                ViewBag.IsToken = true;
+            }
+            ViewBag.AvailableOutput = GoogleKeywordFilter.AvailableOutput();
             return View(filter);
+            
         }
         
         
@@ -51,24 +66,36 @@ namespace MvcApplication1.Controllers
 
             const string dataFeedUrl = "https://www.google.com/analytics/feeds/data"; // Adres do wysyłania zapytań do google.
             DataQuery query = new DataQuery(dataFeedUrl); // tworzymy zapytanie
-            query.Ids = "ga:36743694"; // podajemy id strony w GA (bardzo ważne)
+            query.Ids = "ga:" + filter.GaId; // podajemy id strony w GA (bardzo ważne)
             query.Metrics = "ga:visits, ga:visitBounceRate"; // podajemy mierzone wartości
             query.Dimensions = "ga:hostname, ga:landingPagePath, ga:keyword"; // oraz wymiary
             query.Sort = "-ga:visits,ga:keyword"; // sposób sortowania
-            query.Filters = "ga:medium==organic;ga:keyword!@not set;ga:keyword!@not provided;ga:landingPagePath!@not set;ga:visits>=" + filter.MinPageViews.ToString() + ";ga:visitBounceRate<=" + filter.MaxBounceRate.ToString();
+            query.Filters = "ga:medium==organic;ga:keyword!@not set;ga:keyword!@not provided;ga:landingPagePath!@not set;ga:visits>=" + filter.MinPageViews.ToString() + ";ga:visitBounceRate<=" + filter.MaxBounceRate.ToString() + (filter.UrlLike != null ? ";ga:landingPagePath=@" + filter.UrlLike : "");
             // Filtry: znak ";" oznacza AND
             query.GAStartDate = filter.StartDate.ToShortDateString(); // wskazujemy datę rozpoczęcia
             query.GAEndDate = filter.EndDate.ToShortDateString(); // i zakończenia
+
             DataFeed dataFeed = service.Query(query); // wysyłamy zapytanie do GA
+
             List<GoogleKeywordAnalytic> result = new List<GoogleKeywordAnalytic>(); // tworzymy listę do przechowywania wyników
-            //Clear table
-            db.ExecuteCommand("DELETE FROM ItIdea_SEO_MVGooglKeywordAnalytics"); // Czyścimy tablicę do której będą zapisane wyniki
+
+            //db.ExecuteCommand("DELETE FROM ItIdea_SEO_MVGooglKeywordAnalytics"); // Czyścimy tablicę do której będą zapisane wyniki
             foreach (DataEntry entry in dataFeed.Entries)
             {
                 result.Add(new GoogleKeywordAnalytic(entry)); // Dodajemy wynik do listy
-                db.GoogleKeywordAnalytics.InsertOnSubmit(new GoogleKeywordAnalytic(entry)); // Oraz do bazy danych
+                //db.GoogleKeywordAnalytics.InsertOnSubmit(new GoogleKeywordAnalytic(entry)); // Oraz do bazy danych
             }
-            db.SubmitChanges(); // Wysyłamy zmiany do bazy danych
+            //db.SubmitChanges(); // Wysyłamy zmiany do bazy danych
+            if (filter.Output == OutputType.CSV)
+            {
+                // Konwersja do CSV
+                // Renderujemy partiala "_CSV" do stringa
+                // Dekodujemy encodowanie html (&amp; => &)
+                // Konwertujemy do UTF8 i dalej do array<byte>
+                // Konwertujemy do memory string
+                // Zwracamy wszystko jako File
+                return File(new MemoryStream(Encoding.UTF8.GetBytes(System.Web.HttpUtility.HtmlDecode(ControllerContext.RenderPartialAsString("_CSV", result)))), "text/csv", "analytics.csv");
+            }
             return View(result); // Wyświetlamy wyniki na odpowiednim ekranie
         }
 

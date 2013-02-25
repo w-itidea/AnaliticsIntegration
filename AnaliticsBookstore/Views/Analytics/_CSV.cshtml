@@ -1,0 +1,6 @@
+﻿@model IEnumerable<MvcApplication1.Models.GoogleKeywordAnalytic>
+Url;Keyword;Pageviews;BounceRate
+@foreach (var item in Model)
+{
+@:@item.pageUri;@item.googleKeyword;@item.sumcount;@item.bounceRate
+}

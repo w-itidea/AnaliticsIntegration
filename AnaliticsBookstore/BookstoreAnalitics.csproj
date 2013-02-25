@@ -89,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KeywordStats.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\RenderHelper.cs" />
     <Compile Include="Models\TransactionDetailsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,7 +160,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Home\DoPoznaniaEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +181,7 @@
     <Content Include="Views\Analytics\Index.cshtml" />
     <Content Include="Views\Analytics\SelectData.cshtml" />
     <Content Include="Views\BookstoreFeeds\TPB.cshtml" />
+    <Content Include="Views\Analytics\_CSV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

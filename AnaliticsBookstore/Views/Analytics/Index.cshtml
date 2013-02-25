@@ -12,8 +12,12 @@
     {
         <span>Got access token</span>
     }
+    @if (ViewBag.IsToken == null && ViewBag.IsCode == null)
+    {
+        <span>No access data! Please authorize connection.</span>
+    }
 </p>
-<a href="@ViewBag.AuthUrl">Auth</a> 
+<a href="@ViewBag.AuthUrl">Authorize</a> 
 @if (ViewBag.IsCode != null && ViewBag.IsToken != null)
 {
     <a href="@Url.Action("SelectData")">Get data</a>
