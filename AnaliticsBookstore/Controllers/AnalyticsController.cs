@@ -15,7 +15,7 @@ namespace MvcApplication1.Controllers
     /// 
     /// TODO opisac
     /// </summary>
-    public class KeywordsController : Controller
+    public class AnalyticsController : Controller
     {
 
         private KeywordStatsDataContext db = new KeywordStatsDataContext();

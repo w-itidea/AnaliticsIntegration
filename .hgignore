@@ -153,3 +153,5 @@ GoogleFeeds/bin/Debug/GoogleFeeds.pdb
 GoogleFeeds/bin/Debug/GoogleFeeds.dll.config
 MVCMarketingAutomation.suo
 MVCMarketingAutomation.sln.docstates.suo
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/bin/GoogleFeeds.pdb
+AnaliticsBookstore/obj/Debug/Package/PackageTmp/bin/GoogleFeeds.dll
