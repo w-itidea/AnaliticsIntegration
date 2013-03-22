@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Text;
+using GoogleFeeds;
 
 namespace MvcApplication1.Controllers
 {
@@ -44,6 +45,45 @@ namespace MvcApplication1.Controllers
             //return Content(st)
             return View();
         }
+
+
+        public ActionResult TPBProductLinks()
+        {
+            #region Ustawienia
+
+            //String _waluta = " USD";
+            //var p = LibBLL.CMSBLL._context.Portal_GetArticles(null, null, null, 20);
+            string TEMP_LINK = "http://thepolishbookstore.com/p/";
+            string TEMP_SITE_URI = "http://thepolishbookstore.com";
+   
+            #endregion
+
+
+                var context = new FeedsDataContextDataContext();
+                var producst = context.ITidea_GoogleFeeds();
+
+
+                string _txt = "";
+
+                foreach (var item in producst)
+                {
+                    _txt += TEMP_LINK + item.productID + "/" + BookstorConstDictionary.GetSeName(item.title, true, false) + "\n";
+
+
+                    //string _desc =
+                    //    (String.IsNullOrEmpty(item.tytuloryg) ? "Polish Book '" + item.title + "'" : ("This is a polish edition of " + item.tytuloryg))
+
+                    //     + (String.IsNullOrEmpty(item.author) ? "" : (" by " + item.author))
+
+                    //        ///TODO: Dorobic Cover type, published, book language 
+
+                    //    + " Description in polish: " + item.shortdescription
+
+                    //     ;
+                }
+                return Content(_txt, "text/plain", UTF8Encoding.UTF8 );
+        }
+
     }
       
 }

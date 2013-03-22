@@ -6,6 +6,10 @@ using System.Web;
 
 namespace GoogleFeeds
 {
+    /// <summary>
+    /// Ta klasa zawieta stałe i funkcje pobrane ze kodu sklepu booksora. 
+    /// np. funckje generująca Linki. 
+    /// </summary>
     public class BookstorConstDictionary
     {
 
